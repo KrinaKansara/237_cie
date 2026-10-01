@@ -1,0 +1,36 @@
+@{
+    // Set the page title
+    ViewData["Title"] = "Enrollment Successful";
+}
+
+@* Display success message *@
+<div class="alert alert-success">
+
+    <h2>Enrollment Successful!</h2>
+
+    @* Display student name *@
+    <p>
+        <strong>Student Name:</strong>
+        @ViewBag.StudentName
+    </p>
+
+    @* Display selected Course ID *@
+    <p>
+        <strong>Course ID:</strong>
+        @ViewBag.CourseId
+    </p>
+
+    <p>
+        You have successfully enrolled in the selected course.
+    </p>
+
+</div>
+
+@* Button to return to courses *@
+<a asp-controller="Course"
+   asp-action="Index"
+   class="btn btn-primary">
+
+    Back to Courses
+
+</a>

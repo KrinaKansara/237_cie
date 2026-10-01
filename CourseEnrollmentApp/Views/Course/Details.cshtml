@@ -1,0 +1,82 @@
+@* This page receives one Course object *@
+@model CourseEnrollmentApp.Models.Course
+
+@* Import extension methods *@
+@using CourseEnrollmentApp.Extensions
+
+@{
+    // Set page title
+    ViewData["Title"] = "Course Details";
+}
+
+@* Display page heading *@
+<h1 class="mb-4">Course Details</h1>
+
+@* Display course information *@
+<div class="card">
+
+    @* Course name *@
+    <div class="card-header">
+        <h3>@Model.CourseName</h3>
+    </div>
+
+    <div class="card-body">
+
+        @* Display Course ID *@
+        <p>
+            <strong>Course ID:</strong>
+            @Model.CourseId
+        </p>
+
+        @* Display Course Name *@
+        <p>
+            <strong>Course Name:</strong>
+            @Model.CourseName
+        </p>
+
+        @* Display Duration *@
+        <p>
+            <strong>Duration:</strong>
+            @Model.Duration Months
+        </p>
+
+        @* Display Original Fees *@
+        <p>
+            <strong>Original Fees:</strong>
+            ₹@Model.Fees
+        </p>
+
+        @* Display Discount *@
+        <p>
+            <strong>Discount:</strong>
+            @Model.DiscountPercentage%
+        </p>
+
+        @* Display Final Fees *@
+        <p>
+            <strong>Final Fees:</strong>
+            ₹@Model.CalculateFinalFees()
+        </p>
+
+        @* 
+           Enrollment button.
+           CourseId is passed to the Enroll action.
+        *@
+        <a asp-controller="Course"
+           asp-action="Enroll"
+           asp-route-CourseId="@Model.CourseId"
+           class="btn btn-success">
+
+            Enroll Now
+        </a>
+
+        @* Back to course list *@
+        <a asp-controller="Course"
+           asp-action="Index"
+           class="btn btn-secondary">
+
+            Back to Courses
+        </a>
+
+    </div>
+</div>

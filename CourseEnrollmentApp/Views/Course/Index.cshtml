@@ -1,0 +1,72 @@
+@* Specify that this page receives a list of Course objects *@
+@model List<CourseEnrollmentApp.Models.Course>
+
+@* Import the extension methods so CalculateFinalFees() can be used *@
+@using CourseEnrollmentApp.Extensions
+
+@{
+    @* Set the title of the web page *@
+    ViewData["Title"] = "Courses";
+}
+
+@* Display the page heading *@
+<h1 class="mb-4">Available Courses</h1>
+
+@* Create a table to display course information *@
+<table class="table table-bordered table-striped">
+
+    @* Table heading section *@
+    <thead class="table-dark">
+        <tr>
+            <th>Course ID</th>
+            <th>Course Name</th>
+            <th>Duration</th>
+            <th>Fees</th>
+            <th>Discount</th>
+            <th>Final Fees</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    @* Table body section *@
+    <tbody>
+
+        @* Loop through every course in the Model *@
+        @foreach (var course in Model)
+        {
+            <tr>
+
+                @* Display Course ID *@
+                <td>@course.CourseId</td>
+
+                @* Display Course Name *@
+                <td>@course.CourseName</td>
+
+                @* Display Course Duration *@
+                <td>@course.Duration Months</td>
+
+                @* Display Original Fees *@
+                <td>₹@course.Fees</td>
+
+                @* Display Discount Percentage *@
+                <td>@course.DiscountPercentage%</td>
+
+                @* Calculate and display final fees after discount *@
+                <td>
+                    <strong>₹@course.CalculateFinalFees()</strong>
+                </td>
+
+                @* Create a button for the Course Details page *@
+                @* CourseId is passed through the Query String *@
+                <td>
+                    <a href="/Course/Details?CourseId=@course.CourseId"
+                       class="btn btn-primary">
+                        View Details
+                    </a>
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>

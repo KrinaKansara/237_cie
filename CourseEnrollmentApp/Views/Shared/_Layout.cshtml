@@ -1,0 +1,131 @@
+﻿```cshtml
+@* Main layout file used by all pages *@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    @* Set the character encoding *@
+    <meta charset="utf-8" />
+
+    @* Make the website responsive on different screen sizes *@
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    @* Display the current page title *@
+    <title>@ViewData["Title"] - CourseEnrollmentApp</title>
+
+    @* Load Bootstrap CSS *@
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    @* Load the application's CSS file *@
+    <link rel="stylesheet"
+          href="~/css/site.css"
+          asp-append-version="true" />
+</head>
+
+<body>
+
+    @* Navigation bar *@
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+
+            <div class="container-fluid">
+
+                @* Application name *@
+                <a class="navbar-brand"
+                   asp-area=""
+                   asp-controller="Home"
+                   asp-action="Index">
+                    CourseEnrollmentApp
+                </a>
+
+                @* Navigation button for small screens *@
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                @* Navigation menu *@
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+
+                    <ul class="navbar-nav flex-grow-1">
+
+                        @* Home navigation link *@
+                        <li class="nav-item">
+                            <a class="nav-link text-dark"
+                               asp-area=""
+                               asp-controller="Home"
+                               asp-action="Index">
+                                Home
+                            </a>
+                        </li>
+
+                        @* Courses navigation link *@
+                        @* Clicking this opens CourseController -> Index() *@
+                        <li class="nav-item">
+                            <a class="nav-link text-dark"
+                               asp-area=""
+                               asp-controller="Course"
+                               asp-action="Index">
+                                Courses
+                            </a>
+                        </li>
+
+                        @* Privacy navigation link *@
+                        <li class="nav-item">
+                            <a class="nav-link text-dark"
+                               asp-area=""
+                               asp-controller="Home"
+                               asp-action="Privacy">
+                                Privacy
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    @* Main content area *@
+    <div class="container">
+
+        @* The content of each individual page appears here *@
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+
+    </div>
+
+    @* Footer *@
+    <footer class="border-top footer text-muted">
+
+        <div class="container">
+            &copy; 2026 - CourseEnrollmentApp
+        </div>
+
+    </footer>
+
+    @* Load jQuery *@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    @* Load Bootstrap JavaScript *@
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    @* Load application JavaScript *@
+    <script src="~/js/site.js"
+            asp-append-version="true"></script>
+
+    @* Allow individual pages to add scripts *@
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
+```

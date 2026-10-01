@@ -1,0 +1,67 @@
+@* This page receives the selected Course *@
+@model CourseEnrollmentApp.Models.Course
+
+@{
+    // Set page title
+    ViewData["Title"] = "Course Enrollment";
+}
+
+<h1>Course Enrollment</h1>
+
+<div class="card">
+
+    <div class="card-body">
+
+        @* Display selected course *@
+        <h3>@Model.CourseName</h3>
+
+        <p>
+            <strong>Course ID:</strong>
+            @Model.CourseId
+        </p>
+
+        @* Enrollment form *@
+        <form asp-controller="Course"
+              asp-action="Enroll"
+              method="post">
+
+            @* Student name input *@
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Student Name
+                </label>
+
+                <input type="text"
+                       name="StudentName"
+                       class="form-control"
+                       placeholder="Enter your name"
+                       required />
+
+            </div>
+
+
+            @* 
+               Hidden Field:
+               CourseId is submitted with the form
+               but is not visible to the user.
+            *@
+
+            <input type="hidden"
+                   name="CourseId"
+                   value="@Model.CourseId" />
+
+
+            @* Submit enrollment form *@
+            <button type="submit"
+                    class="btn btn-success">
+
+                Submit Enrollment
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
